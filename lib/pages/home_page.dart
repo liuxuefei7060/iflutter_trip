@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:iflutter_trip/dao/home_dao.dart';
+import 'package:iflutter_trip/generated/json/base/json_convert_content.dart';
+import 'package:iflutter_trip/model/home_entity.dart';
 
 const APPBAR_SCROLL_OFFSET = 100.0;
 
@@ -38,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   double _appBarAlpha = 0.0;
+  String _text = "";
 
   void _onScroll(double offset) {
     print(offset);
@@ -55,7 +59,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    HomeDao.fetch2()
+        .then((value) => {
+              setState(() {
+                print("13123131");
+                _text = value.config.searchUrl;
+              })
+            })
+        .catchError((onError) {
+      print(onError);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // JsonConvert.fromJsonAsT(null)
     return Scaffold(
       body: Stack(
         children: [
@@ -90,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       height: 800,
                       color: Colors.blue,
-                      child: Text('哈哈'),
+                      child: Text(_text),
                     )
                   ],
                 ),
