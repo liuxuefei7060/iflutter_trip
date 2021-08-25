@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
 
   double _appBarAlpha = 0.0;
   String _text = "";
+  HomeEntity? homeEntity;
 
   void _onScroll(double offset) {
     print(offset);
@@ -59,12 +60,11 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
+  void loadData() {
     HomeDao.fetch2()
         .then((value) => {
               setState(() {
+                homeEntity = value;
                 print("13123131");
                 _text = value.config.searchUrl;
               })
@@ -75,9 +75,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // JsonConvert.fromJsonAsT(null)
     return Scaffold(
+      backgroundColor: Color(0xfff2f2f2),
       body: Stack(
         children: [
           MediaQuery.removePadding(
@@ -108,7 +114,12 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ),
-                    LocalNav(),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(6, 4, 6, 4),
+                      child: LocalNav(
+                        localNavList: homeEntity?.localNavList ?? [],
+                      ),
+                    ),
                     Container(
                       height: 800,
                       color: Colors.blue,

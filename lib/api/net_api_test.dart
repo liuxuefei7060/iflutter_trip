@@ -1,9 +1,6 @@
-import 'package:iflutter_trip/model/task_entity.dart';
-import 'package:iflutter_trip/model/task_model.dart';
-import 'package:json_annotation/json_annotation.dart';
-
-import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
+import 'package:iflutter_trip/model/task_model.dart';
+import 'package:retrofit/retrofit.dart';
 
 part 'net_api_test.g.dart';
 

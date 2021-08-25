@@ -1,10 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:iflutter_trip/model/home_entity.dart';
 
 class LocalNav extends StatelessWidget {
-  const LocalNav({Key? key}) : super(key: key);
+  final List<HomeCommon> localNavList;
+
+  const LocalNav({Key? key, required this.localNavList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("2131"),);
+    return Container(
+      height: 64,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(6),
+          )),
+      child: Padding(
+        padding: EdgeInsets.all(7),
+        child: _items(context),
+      ),
+    );
+  }
+
+  _items(BuildContext context) {
+    List<Widget> items = [];
+
+    localNavList.forEach((model) {
+      items.add(_item(context, model));
+    });
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: items,
+    );
+  }
+
+  Widget _item(BuildContext context, HomeCommon model) {
+    return GestureDetector(
+      onTap: () {},
+      child: Column(
+        children: [
+          Image.network(
+            model.icon,
+            width: 32,
+            height: 32,
+          ),
+          Text(
+            model.title,
+            style: TextStyle(fontSize: 12),
+          )
+        ],
+      ),
+    );
   }
 }
