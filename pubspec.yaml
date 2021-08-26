@@ -31,6 +31,8 @@ dependencies:
   dio: ^4.0.0
   retrofit: any
   logger: any  #for logging purpose
+  webview_flutter: ^2.0.12
+  flutter_webview_plugin: ^0.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
