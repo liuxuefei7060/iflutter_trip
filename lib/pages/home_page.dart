@@ -3,6 +3,7 @@ import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:iflutter_trip/dao/home_dao.dart';
 import 'package:iflutter_trip/generated/json/base/json_convert_content.dart';
 import 'package:iflutter_trip/model/home_entity.dart';
+import 'package:iflutter_trip/widgets/grid_nav.dart';
 import 'package:iflutter_trip/widgets/local_nav.dart';
 
 const APPBAR_SCROLL_OFFSET = 100.0;
@@ -44,6 +45,7 @@ class _HomePageState extends State<HomePage> {
   double _appBarAlpha = 0.0;
   String _text = "";
   HomeEntity? homeEntity;
+  HomeGridNav? gridNav;
 
   void _onScroll(double offset) {
     print(offset);
@@ -65,7 +67,9 @@ class _HomePageState extends State<HomePage> {
         .then((value) => {
               setState(() {
                 homeEntity = value;
+                gridNav = value.gridNav;
                 print("13123131");
+                print(gridNav?.hotel.startColor);
                 _text = value.config.searchUrl;
               })
             })
@@ -120,6 +124,7 @@ class _HomePageState extends State<HomePage> {
                         localNavList: homeEntity?.localNavList ?? [],
                       ),
                     ),
+                    GridNav(gridNavModel: gridNav),
                     Container(
                       height: 800,
                       color: Colors.blue,
