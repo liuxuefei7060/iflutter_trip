@@ -5,6 +5,8 @@ import 'package:iflutter_trip/generated/json/base/json_convert_content.dart';
 import 'package:iflutter_trip/model/home_entity.dart';
 import 'package:iflutter_trip/widgets/grid_nav.dart';
 import 'package:iflutter_trip/widgets/local_nav.dart';
+import 'package:iflutter_trip/widgets/sales_box.dart';
+import 'package:iflutter_trip/widgets/sub_nav.dart';
 
 const APPBAR_SCROLL_OFFSET = 100.0;
 
@@ -119,17 +121,27 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(6, 4, 6, 4),
+                      padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
                       child: LocalNav(
                         localNavList: homeEntity?.localNavList ?? [],
                       ),
                     ),
-                    GridNav(gridNavModel: gridNav),
-                    Container(
-                      height: 800,
-                      color: Colors.blue,
-                      child: Text(_text),
-                    )
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+                      child: GridNav(gridNavModel: gridNav),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+                      child: SubNav(
+                        subNavList: homeEntity?.subNavList ?? [],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+                      child: SalesBox(
+                        salesBox: homeEntity?.salesBox,
+                      ),
+                    ),
                   ],
                 ),
               )),
